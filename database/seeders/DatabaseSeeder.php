@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\SeederDistributer;
+use Database\Seeders\SeederBrend;
+use Database\Seeders\SeederProizvod;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $distributer = new SeederDistributer;
+        $distributer->run();
+
+        $proizvod = new SeederProizvod;
+        $proizvod->run();
+
+        $brend = new SeederBrend;
+        $brend->run();
     }
 }
