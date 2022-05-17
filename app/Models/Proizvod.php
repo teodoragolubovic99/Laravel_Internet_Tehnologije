@@ -10,6 +10,14 @@ class Proizvod extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'naziv',
+        'sifra',
+        'velicina',
+        'cena',
+        'brend_id',
+    ];
+
     public function brend()
     {
         return $this->belongsTo(Brend::class);

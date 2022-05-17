@@ -10,6 +10,12 @@ class Distributer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'naziv',
+        'adresa',
+        'grad'
+    ];
+
     public function brendovi()
     {
         return $this->hasMany(Brend::class);

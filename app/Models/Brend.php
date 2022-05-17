@@ -11,6 +11,12 @@ class Brend extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'naziv',
+        'osnivac',
+        'distributer_id',
+    ];
+
     public function proizvodi()
     {
         return $this->hasMany(Proizvod::class);
