@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DistController;
 use App\Http\Controllers\API\ProizvodController;
 use Illuminate\Http\Request;
@@ -18,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('distributer', [DistController::class, 'index']);
 Route::get('distributer/{distributer}', [DistController::class, 'show']);
-Route::put('distributer/{distributer}', [DistController::class, 'update']);
-Route::delete('distributer/{distributer}', [DistController::class, 'destroy']);
 Route::get('proizvod', [ProizvodController::class, 'index']);
 Route::get('proizvod/{proizvod}', [ProizvodController::class, 'show']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::put('distributer/{distributer}', [DistController::class, 'update']);
+    Route::delete('distributer/{distributer}', [DistController::class, 'destroy']);
+    Route::post('logout', [AuthController::class, 'logout']);
 });
